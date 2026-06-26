@@ -234,7 +234,7 @@ The DAG forms a fan-in pattern with two parallel branches converging on the fina
 
 ---
 
-## 5. Analysis Results
+## 4. Analysis Results
 
 Based on the Tableau dashboard visualizations created from the merged dataset:
 
@@ -251,35 +251,35 @@ Based on the Tableau dashboard visualizations created from the merged dataset:
 
 ---
 
-## 6. Evidence
+## 5. Evidence
 
 The following screenshots demonstrate the successful execution of the pipeline end-to-end.
 
-### 6.1 Docker Containers
+### 5.1 Docker Containers
 
 All services running in Docker Desktop — including Airflow components, MongoDB, MySQL, ClickHouse, Redis, and PostgreSQL:
 
 ![Docker Containers Running](images/docker-containers-running.png)
 
-### 6.2 Data Landed in MongoDB
+### 5.2 Data Landed in MongoDB
 
 Documents successfully inserted into the `tech_test.data` collection in MongoDB, showing cleaned and normalized records:
 
 ![MongoDB Data](images/mongodb-data-landed.png)
 
-### 6.3 Data Landed in MySQL
+### 5.3 Data Landed in MySQL
 
 Rows successfully loaded into the `tech_test.data` table in MySQL, reflecting the structured spreadsheet source:
 
 ![MySQL Data](images/mysql-data-landed.png)
 
-### 6.4 Merged Data in ClickHouse
+### 5.4 Merged Data in ClickHouse
 
 The final merged dataset in ClickHouse (OLAP), combining records from both MongoDB and MySQL sources via full outer join:
 
 ![ClickHouse Merged Data](images/clickhouse-merged-data.png)
 
-### 6.5 Airflow Task Execution Logs
+### 5.5 Airflow Task Execution Logs
 
 Logs from the `join_and_send_to_clickhouse` task confirming successful data insertion with deduplication checks:
 

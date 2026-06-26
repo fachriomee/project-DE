@@ -1,6 +1,6 @@
 # ETL Pipeline and Data Visualization Project
 
-**Project Context:** Data Engineering Technical Assessment — GTech Digital Asia
+**Project Context:** Data Engineering Technical Assessment
 
 ---
 
@@ -231,18 +231,6 @@ The DAG forms a fan-in pattern with two parallel branches converging on the fina
 *Figure 2 — Airflow DAG graph view (all tasks completed successfully):*
 
 ![Airflow DAG Graph](images/airflow-dag-graph.png)
-
----
-
-## 4. Identified Improvements
-
-The following observations highlight areas where the pipeline could be hardened for production readiness:
-
-- **Syntax correction:** The `etl_mysql()` function contains a missing closing parenthesis in the call to `create_database_and_insert_dataframe(...)`, which would produce a `SyntaxError` at import time.
-- **XCom scalability:** Full DataFrames are serialized through XCom, which is backed by the Airflow metadata database. This approach is suitable for small datasets but does not scale well. For larger volumes, intermediate staging via files, object storage (e.g., S3/GCS), or temporary tables would be more appropriate.
-- **Credential management:** Database hosts, usernames, and passwords are hardcoded in the source. Migrating these to Airflow Connections or environment variables (`.env`) would improve security and maintainability.
-- **Parameterized queries:** ClickHouse insert statements are constructed via string concatenation. Using parameterized queries would mitigate SQL injection risks and improve handling of special characters.
-- **Logging format:** The call `logging.info("Fixed Data:", fixed_data)` passes two positional arguments, but Python's `logging` module expects a format string. The correct form is `logging.info("Fixed Data: %s", fixed_data)`.
 
 ---
 
